@@ -6,30 +6,30 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-
-import static android.content.ContentValues.TAG;
+import android.widget.FrameLayout;
 
 /**
  * Created by tedkim on 2018. 1. 3..
  */
 
-public class Test extends View {
+public class CustomRect extends View {
+    private static final String TAG = CustomRect.class.getSimpleName();
 
     private int mPanelHeight;
 
-    public Test(Context context) {
+    public CustomRect(Context context) {
         super(context);
     }
 
-    public Test(Context context, @Nullable AttributeSet attrs) {
+    public CustomRect(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public Test(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CustomRect(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public Test(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public CustomRect(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
@@ -40,6 +40,7 @@ public class Test extends View {
         final int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         final int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        Log.d(TAG, "width mode : " + widthMode + " width size : " + widthSize + " / height mode : " + heightMode + " height size : " + heightSize);
 
         if (widthMode != MeasureSpec.EXACTLY) {
             throw new IllegalStateException("Width must have an exact value or MATCH_PARENT");
@@ -48,28 +49,9 @@ public class Test extends View {
         }
 
         int layoutHeight = heightSize - getPaddingTop() - getPaddingBottom();
+        // 실제 커스텀 뷰가 가지게 될 높이
         int panelHeight = mPanelHeight;
 
-        final int childCount = getChildCount();
-
-        if (childCount > 2) {
-            Log.e(TAG, "onMeasure: More than two child views are not supported.");
-        } else if (getChildAt(1).getVisibility() == GONE) {
-            panelHeight = 0;
-        }
-
-        // We'll find the current one below.
-        mSlideableView = null;
-        mCanSlide = false;
-
-        /**
-         namh
-
-         <core>
-         for (int i = 0; i < childCount; i++)
-         child.measure(childWidthSpec, childHeightSpec);
-         </core>
-         */
         // First pass. Measure based on child LayoutParams width/height.
         for (int i = 0; i < childCount; i++) {
             final View child = getChildAt(i);
@@ -90,6 +72,7 @@ public class Test extends View {
                 height -= panelHeight;
             }
 
+            /** child View spec 정하기 **/
             int childWidthSpec;
             if (lp.width == LayoutParams.WRAP_CONTENT) {
                 childWidthSpec = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.AT_MOST);
@@ -134,7 +117,7 @@ public class Test extends View {
                 continue;
             }
 
-            final LayoutParams lp = (LayoutParams) child.getLayoutParams();
+            final FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) child.getLayoutParams();
 
             int childHeight = child.getMeasuredHeight();
 
