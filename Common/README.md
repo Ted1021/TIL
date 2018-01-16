@@ -16,7 +16,7 @@
 
 ##### 1) 개념
 
->  데이터를 파일에 저장하거나, 네트워크에 실어보내기위해 바이트단위로 쪼개 늘어뜨리게 되는데
+> 데이터를 파일에 저장하거나, 네트워크에 실어보내기위해 바이트단위로 쪼개 늘어뜨리게 되는데
 >
 > 이를 __Serializable (직렬화)__ 라 한다.
 
@@ -76,3 +76,23 @@ public class DataClass implements Serializable {
 }
 ```
 
+<br>
+
+
+
+## Runnable
+
+> 특정 Thread 에서 원하는 실행로직이나, 변수들을 실어보내기 위한 클래스
+
+<br>
+
+#### 1. 정의
+
+- __Runnable Interface__ 는 반드시 ___쓰레드___ 에 의해 실행 될 여지가 있는 클래스에 의해 구현되어야 한다.
+- __Runnable Interface__ 는 실행될 여지가 있는 코드를 가진 객체에 대한 공통의 프로토콜을 가진다.
+- 예를들어, Runnable 은 Thread 클래스에 의해 구현된다.
+- 활성화가 된다는 것은 Thread 가 주욱 실행되어 왔고, 아직 끝나지 않았음을 의미한다.
+- 게다가, Runnable 은 Thread 를 Subclassing 하지않고 활성화가 되는 클래스를 의미한다.
+- Runnable 을 implements 한 클래스는 Thread 를 상속 받을필요가 없다. 
+- 만약에 __run()__ 메소드 이에외 다른 Thread 클래스의 메소드를 override 할 필요가 없다면, 대부분의 케이스에서 Runnable interface 가 사용될 수 있다.
+- 이는 매우 중요한데, 클래스들은 항상 상속될 필요가 없기 때문이다.
