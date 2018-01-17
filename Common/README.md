@@ -4,7 +4,7 @@
 
 
 
-## Serializable & Transient
+## # Serializable & Transient
 
 > 데이터 전송을 위한 인터페이스
 
@@ -80,7 +80,7 @@ public class DataClass implements Serializable {
 
 
 
-## Runnable
+## # Runnable
 
 > 특정 Thread 에서 원하는 실행로직이나, 변수들을 실어보내기 위한 클래스
 
