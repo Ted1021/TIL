@@ -1,19 +1,11 @@
 # 알아두면 쓸데있는 잡지식
-
 <br>
-
-
 
 ## # Serializable & Transient
 
 > 데이터 전송을 위한 인터페이스
 
-<br>
-
-
-
 #### 1. Serializable
-
 ##### 1) 개념
 
 > 데이터를 파일에 저장하거나, 네트워크에 실어보내기위해 바이트단위로 쪼개 늘어뜨리게 되는데
@@ -23,7 +15,6 @@
 - 기본 자료형은 별도의 처리를 거치치 않고도 직렬화 할 수 있다.
 - 여러 자료형이 뒤섞여있는 클래스의 경우, __반드시! Serialized 인터페이스__ 를 구현해 주어야 한다.
 - 직렬화된 클래스의 __Inner Class__ 또한 Serializable 인터페이스를 구현해야 한다.
-
 <br>
 
 ##### 2) 예제
@@ -43,19 +34,13 @@ public class DataClass implements Serializable {
   }
 }
 ```
-
 <br>
 
-
-
 #### 2. Transient
-
 ##### 1) 개념
-
 > Serializable 을 구현할 때, 보안상의 이유등으로 직렬화 하고싶지 않은 필드(객체) 가 생길 수 있는데
 >
 > 이때 __Transient__ 를 선언해주게 되면, 원하는 필드(객체) 만 직렬화에서 제외 시킬 수 있다.
-
 <br>
 
 ##### 2) 예제
@@ -75,19 +60,12 @@ public class DataClass implements Serializable {
   }
 }
 ```
-
 <br>
-
-
 
 ## # Runnable
-
 > 특정 Thread 에서 원하는 실행로직이나, 변수들을 실어보내기 위한 클래스
 
-<br>
-
 #### 1. 정의
-
 - __Runnable Interface__ 는 반드시 ___쓰레드___ 에 의해 실행 될 여지가 있는 클래스에 의해 구현되어야 한다.
 - __Runnable Interface__ 는 실행될 여지가 있는 코드를 가진 객체에 대한 공통의 프로토콜을 가진다.
 - 예를들어, Runnable 은 Thread 클래스에 의해 구현된다.
