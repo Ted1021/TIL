@@ -86,3 +86,52 @@ public class DataClass implements Serializable {
 - Runnable 을 implements 한 클래스는 Thread 를 상속 받을필요가 없다. 
 - 만약에 __run()__ 메소드 이에외 다른 Thread 클래스의 메소드를 override 할 필요가 없다면, 대부분의 케이스에서 Runnable interface 가 사용될 수 있다.
 - 이는 매우 중요한데, 클래스들은 항상 상속될 필요가 없기 때문이다.
+
+<br>
+
+
+
+## # Gson Annotations
+
+> Gson 에서 자주 쓰이는 annotation 에 대해 알아본다.
+
+#### 1. @SerializedName
+
+> 간단히 말해, JSON 의 __key field__ 를 java 의 __Data Class__ 에 Mapping 하는 역할을 한다.
+>
+> 해당 어노테이션을 사용하면 JSON 상의 키와 정확히 일치하는 경우에만 특정 필드를 컨버팅한다.
+
+```json
+// JSON
+{
+  "userName" : "ted"
+  "age" : 19
+}
+```
+
+```java
+// JAVA
+class Student {
+  
+  @SerializedName("userName")
+  String name;
+  
+  @SerializedName("age")
+  int age;
+}
+```
+
+###### - 데이터클래스의 변수명이 JSON 과 완전히 일치하지 않더라도 어노테이션을 통해 매칭시킬수 있다.
+
+<br>
+
+
+
+#### 2. @Exposed
+
+> 직렬화와 비직렬화에 노출시키는 어노테이션(?) 이다.
+>
+> @SerializedName 을 사용한 뒤에 해당 어노테이션을 사용하게되면,
+>
+> JSON 필드에 매칭되는 값이 없을 때, null 처리를 하게 된다.
+
